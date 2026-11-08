@@ -3,8 +3,9 @@ import { Sparkles } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/code-to-image", label: "Code to Image" },
   { href: "/svg-generator", label: "SVG Generator" },
+  { href: "/redactor", label: "Redactor" },
+  { href: "/tailwind-ui", label: "Tailwind UI" },
 ];
 
 export function Navbar() {
@@ -33,7 +34,7 @@ export function Navbar() {
         </nav>
 
         <Link
-          href="/code-to-image"
+          href="/svg-generator"
           className="inline-flex items-center justify-center rounded-xl bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-violet-500/30 transition hover:bg-violet-400"
         >
           Launch App

@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -29,6 +30,8 @@ body {
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
 }
 
 button,
@@ -71,6 +74,15 @@ h6 {
 
 input[type="range"] {
   accent-color: #8b5cf6;
+}
+
+.ad-banner {
+  margin-block: 1.5rem;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::-webkit-scrollbar {
