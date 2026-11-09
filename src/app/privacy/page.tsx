@@ -11,7 +11,8 @@ export default function PrivacyPage() {
           <p>CodeGlow is designed as a privacy-first browser utility. We do not require account creation, and most tools run entirely inside the browser.</p>
           <p>When you upload an image in the Redactor tool, the file stays in your local browser session and is not transmitted to our servers unless you choose to share it externally.</p>
           <p>We may use standard analytics and ad serving technology to support product performance and advertising compliance. We do not sell personal data for marketing purposes.</p>
-          <p>We use third-party services, including Google AdSense, which is subject to their own privacy practices and policies. Please review those policies directly.</p>
+          <p>We use third-party services, including Google AdSense, which is subject to their own privacy practices and policies. Please review those policies directly. Ads are served only on clearly labeled advertisement slots and are never presented as part of a user action, fake content, or deceptive UI element.</p>
+          <p>We do not collect sensitive personal information for advertising purposes, and we do not use deceptive consent or hidden tracking practices. If a tool does not require data transfer, we avoid sending it to a server.</p>
           <p>Contact us at hello@codeglow.app for policy questions, data requests, or removal requests.</p>
         </div>
 

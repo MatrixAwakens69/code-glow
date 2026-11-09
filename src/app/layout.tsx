@@ -4,6 +4,7 @@ import { JetBrains_Mono, Manrope } from "next/font/google";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { hasAnyValidAdSenseSlot, isValidAdSenseClientId } from "@/lib/ads";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -18,6 +19,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://codeglow.app";
 const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "";
+const shouldLoadAdsenseScript = isValidAdSenseClientId(adsenseClientId) && hasAnyValidAdSenseSlot();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -85,7 +87,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${manrope.variable} ${jetBrainsMono.variable} h-full antialiased`}>
       <head>
-        {adsenseClientId ? (
+        {shouldLoadAdsenseScript ? (
           <>
             <Script
               async
