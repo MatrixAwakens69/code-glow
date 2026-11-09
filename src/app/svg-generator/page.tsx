@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Copy, Download, Loader2, Sparkles } from "lucide-react";
 import { AdBanner } from "@/components/AdBanner";
+import { getAdSlot } from "@/lib/ads";
 
 const DEFAULT_PROMPT = "Generate a sleek black bell vector icon with white background.";
 const MAX_GENERATED_LINES = 1000;
@@ -117,7 +118,11 @@ export default function SvgGeneratorPage() {
   return (
     <main className="min-h-screen bg-[#070b14] px-5 py-8 text-zinc-100 lg:px-8">
       <div className="mx-auto max-w-[1700px] space-y-8">
-        <AdBanner label="Google AdSense 728x90 Leaderboard" className="mx-auto max-w-3xl" />
+        <AdBanner
+          label="Google AdSense 728x90 Leaderboard"
+          className="mx-auto max-w-3xl"
+          slot={getAdSlot("svg")}
+        />
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
           <div className="mb-5 flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 shadow-lg shadow-orange-500/30">

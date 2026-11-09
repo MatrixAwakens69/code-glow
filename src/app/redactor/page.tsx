@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from "react";
 import { Download, ImagePlus, ShieldCheck, Sparkles, Wand2 } from "lucide-react";
 import Tesseract from "tesseract.js";
 import { AdBanner } from "@/components/AdBanner";
+import { getAdSlot } from "@/lib/ads";
 
 type RedactionBox = {
   x: number;
@@ -222,7 +223,11 @@ export default function RedactorPage() {
   return (
     <main className="min-h-screen bg-[#070b14] px-4 py-8 text-zinc-100 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1500px] space-y-8">
-        <AdBanner label="Google AdSense 728x90 Leaderboard" className="mx-auto max-w-3xl" />
+        <AdBanner
+          label="Google AdSense 728x90 Leaderboard"
+          className="mx-auto max-w-3xl"
+          slot={getAdSlot("redactor")}
+        />
         <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl sm:p-6 lg:p-7">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 via-blue-500 to-violet-500 shadow-lg shadow-cyan-500/30">

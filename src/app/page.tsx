@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { ArrowRight, Palette, ShieldCheck, Sparkles } from "lucide-react";
 import { AdBanner } from "@/components/AdBanner";
+import { getAdSlot } from "@/lib/ads";
 
 const tools = [
   {
@@ -32,7 +33,11 @@ export default function HomePage() {
       <div className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
         <section className="mb-8 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] backdrop-blur-xl">
           <div className="mb-8 mt-2">
-            <AdBanner label="Google AdSense 728x90 Leaderboard" className="mx-auto max-w-3xl" />
+            <AdBanner
+              label="Google AdSense 728x90 Leaderboard"
+              className="mx-auto max-w-3xl"
+              slot={getAdSlot("home")}
+            />
           </div>
 
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">

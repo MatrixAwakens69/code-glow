@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Copy, Download, Loader2, Palette, Sparkles } from "lucide-react";
 import { AdBanner } from "@/components/AdBanner";
+import { getAdSlot } from "@/lib/ads";
 
 const SAMPLE_PROMPT = "Create a premium SaaS launch card with a glowing violet button and soft glassmorphism background";
 const MAX_GENERATED_LINES = 1000;
@@ -113,7 +114,11 @@ export default function TailwindUiPage() {
     <>
       <main className="min-h-screen bg-[#070b14] px-3 py-8 text-zinc-100 sm:px-5 lg:px-8">
         <div className="mx-auto w-full max-w-[1680px] space-y-8">
-          <AdBanner label="Google AdSense 728x90 Leaderboard" className="mx-auto max-w-3xl" />
+          <AdBanner
+            label="Google AdSense 728x90 Leaderboard"
+            className="mx-auto max-w-3xl"
+            slot={getAdSlot("tailwind")}
+          />
           <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl sm:p-6">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500 via-violet-500 to-indigo-500 shadow-lg shadow-violet-500/30">
