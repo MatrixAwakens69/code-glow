@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { JetBrains_Mono, Manrope } from "next/font/google";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { hasAnyValidAdSenseSlot, isValidAdSenseClientId } from "@/lib/ads";
@@ -107,6 +108,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
