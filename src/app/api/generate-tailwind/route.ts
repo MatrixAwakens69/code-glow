@@ -1,17 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MAX_GENERATED_LINES = 1000;
-
-function limitGeneratedLines(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) return "";
-
-  const lines = trimmed.split(/\r?\n/);
-  if (lines.length <= MAX_GENERATED_LINES) return trimmed;
-
-  return lines.slice(0, MAX_GENERATED_LINES).join("\n");
-}
-
 function isTailwindPromptAllowed(prompt: string) {
   const lower = prompt.toLowerCase();
 
@@ -27,7 +15,6 @@ function buildTailwindSystemPrompt() {
     "You are a senior front-end UI generator.",
     "This tool is strictly for generating HTML with Tailwind CSS classes only.",
     "Return only one compact Tailwind HTML component that matches the user's prompt exactly.",
-    "CRITICAL: the generated output must be under 1000 lines total. Keep it compact, minimal, and production-safe.",
     "Do not output raw SVG, plain CSS, JavaScript, React code, or non-HTML markup.",
     "Prioritize the literal visual requirements from the prompt: color palette, background, button styles, text content, emphasis, and hierarchy.",
     "If the prompt specifies a color like red-blue gradient, use that color direction in the CTA/button or primary accent; do not invent a neutral or unrelated palette.",
@@ -46,8 +33,7 @@ function normalizeHtml(raw: string) {
   const cleaned = raw.trim().replace(/```html/gi, "").replace(/```/g, "").trim();
   if (!cleaned) return "";
   const match = cleaned.match(/<\w+[\s\S]*>/i);
-  const normalized = match ? cleaned : `<div class="rounded-2xl border border-white/10 bg-white/5 p-6">${cleaned}</div>`;
-  return limitGeneratedLines(normalized);
+  return match ? cleaned : `<div class="rounded-2xl border border-white/10 bg-white/5 p-6">${cleaned}</div>`;
 }
 
 function applyPromptColorOverrides(markup: string, prompt: string) {

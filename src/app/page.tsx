@@ -5,7 +5,7 @@ import { getAdSlot } from "@/lib/ads";
 
 const tools = [
   {
-    title: "SVG Generator",
+    title: "SVG Playground & AI SVG Generator",
     description: "Turn plain-language prompts into production-ready vector artwork with instant preview, copy, and export actions.",
     href: "/svg-generator",
     icon: Sparkles,
@@ -19,7 +19,7 @@ const tools = [
     accent: "from-cyan-500 via-blue-500 to-violet-500",
   },
   {
-    title: "Tailwind UI Playground",
+    title: "CSS Playground & AI Tailwind Generator",
     description: "Build glassmorphism cards, glowing actions, and layered gradients with editable visual controls and code output.",
     href: "/tailwind-ui",
     icon: Palette,
@@ -47,14 +47,14 @@ export default function HomePage() {
                 Build, redact, and ship polished creative assets faster.
               </h1>
               <p className="mt-4 max-w-xl text-base text-zinc-300">
-                CodeGlow gives product teams and developers a secure browser-first suite for AI SVG generation, privacy-safe redaction, and Tailwind prototyping.
+                CodeGlow gives product teams and developers a secure browser-first suite for AI SVG generation privacy-safe redaction and Tailwind prototyping.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/svg-generator"
                   className="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-violet-500/30 transition hover:bg-violet-400"
                 >
-                  Launch SVG Generator
+                  Launch SVG Playground
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
@@ -70,9 +70,9 @@ export default function HomePage() {
               <div className="space-y-4">
                 {[
                   { label: "Built for", value: "Developers & creators" },
-                  { label: "AI output", value: "Prompt-to-SVG" },
+                  { label: "AI output", value: "Generate SVGs and Tailwind code" },
                   { label: "Privacy", value: "Browser-local by default" },
-                  { label: "Export", value: "PNG, SVG, and code snippets" },
+                  { label: "Export", value: "PNG SVG and code snippets" },
                 ].map((item) => (
                   <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
                     <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">{item.label}</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { adsense, getAdSlot, isValidAdSenseConfig } from "@/lib/ads";
 
 type AdBannerProps = {
@@ -19,8 +19,11 @@ export function AdBanner({
   const adsenseClientId = adsense.clientId;
   const resolvedSlot = (slot || getAdSlot("default")).trim();
   const isAdsEnabled = isValidAdSenseConfig(adsenseClientId, resolvedSlot);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     if (!isAdsEnabled) return;
 
     try {
@@ -32,8 +35,13 @@ export function AdBanner({
     }
   }, [isAdsEnabled]);
 
-  if (!isAdsEnabled) {
-    return null;
+  if (!isAdsEnabled || !mounted) {
+    return (
+      <div
+        aria-label={label}
+        className={`ad-banner flex min-h-[90px] w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(139,92,246,0.18),_rgba(15,23,42,0.85)_42%,_rgba(3,7,18,0.92)_100%)] ${className}`}
+      />
+    );
   }
 
   return (

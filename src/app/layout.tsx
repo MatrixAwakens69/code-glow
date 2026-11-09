@@ -24,23 +24,34 @@ const shouldLoadAdsenseScript = isValidAdSenseClientId(adsenseClientId) && hasAn
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: "CodeGlow",
   title: {
-    default: "CodeGlow | AI SVG Generator, Redactor & Tailwind UI Tools",
+    default: "CodeGlow | SVG Playground & AI SVG Generator | CSS Playground & AI Tailwind Generator",
     template: "%s | CodeGlow",
   },
   description:
-    "CodeGlow helps developers generate SVG art from prompts, redact sensitive content locally in-browser, and prototype Tailwind UI ideas faster with AI-powered tools.",
+    "CodeGlow is an AI-powered SVG playground, CSS playground, and Tailwind generator for creating UI mockups, icons, and vector artwork in the browser.",
   keywords: [
+    "SVG playground",
     "AI SVG generator",
-    "SVG generator",
-    "developer tools",
-    "Tailwind UI generator",
-    "image redactor",
-    "privacy-safe editor",
-    "CodeGlow",
+    "SVG generator online",
     "prompt to SVG",
-    "AI design tools",
+    "svg creator",
+    "CSS playground",
+    "Tailwind CSS playground",
+    "AI Tailwind generator",
+    "Tailwind CSS generator",
+    "Tailwind component generator",
+    "UI prototype tool",
+    "AI design tool",
+    "CodeGlow",
+    "image redactor",
   ],
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   alternates: {
     canonical: "/",
   },
@@ -59,9 +70,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "CodeGlow | AI SVG Generator, Redactor & Tailwind UI Tools",
+    title: "CodeGlow | SVG Playground & AI SVG Generator | CSS Playground & AI Tailwind Generator",
     description:
-      "Browser-first developer utilities for creating SVGs, redacting sensitive content, and prototyping Tailwind interfaces with AI.",
+      "Generate SVG art from prompts, prototype Tailwind UI components, and experiment with CSS in a fast browser-first workflow.",
     url: siteUrl,
     siteName: "CodeGlow",
     locale: "en_US",
@@ -71,15 +82,15 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "CodeGlow developer utility platform",
+        alt: "CodeGlow SVG playground and CSS playground",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CodeGlow",
+    title: "CodeGlow | SVG Playground & AI SVG Generator | CSS Playground & AI Tailwind Generator",
     description:
-      "Generate SVGs, redact sensitive content, and prototype Tailwind UIs in a fast, privacy-first workflow.",
+      "Create SVGs, test Tailwind CSS ideas, and prototype interfaces faster with CodeGlow.",
     images: ["/og-image.svg"],
   },
 };
@@ -88,6 +99,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${manrope.variable} ${jetBrainsMono.variable} h-full antialiased`}>
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/icon.svg" type="image/svg+xml" />
         {shouldLoadAdsenseScript ? (
           <>
             <Script

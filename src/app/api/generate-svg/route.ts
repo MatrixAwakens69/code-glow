@@ -1,26 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MAX_GENERATED_LINES = 1000;
-
-function limitGeneratedLines(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) return "";
-
-  const lines = trimmed.split(/\r?\n/);
-  if (lines.length <= MAX_GENERATED_LINES) return trimmed;
-
-  return lines.slice(0, MAX_GENERATED_LINES).join("\n");
-}
-
 function normalizeSvg(raw: string) {
   const cleaned = raw.trim().replace(/```svg/gi, "").replace(/```/g, "").trim();
   const match = cleaned.match(/<svg[\s\S]*?<\/svg>/i);
   const svg = match ? match[0] : cleaned;
 
   if (!svg) return "";
-  if (svg.startsWith("<svg")) return limitGeneratedLines(svg);
+  if (svg.startsWith("<svg")) return svg.trim();
 
-  return limitGeneratedLines(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">${svg}</svg>`);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">${svg}</svg>`.trim();
 }
 
 function isSvgPromptAllowed(prompt: string) {
@@ -38,7 +26,6 @@ function getSvgSystemPrompt() {
     "You are a senior SVG illustrator.",
     "This tool is strictly for generating SVG code only.",
     "Return only valid SVG markup with a real vector composition, useful shapes, gradients, and balanced layout.",
-    "CRITICAL: the generated SVG code must be under 1000 lines total. Keep the SVG concise, clean, and optimized.",
     "Do not produce HTML, CSS, JavaScript, React components, or any non-SVG output.",
     "Do not output placeholder mockups, whiteboard checkboxes, or generic card layouts.",
     "The SVG should look intentionally designed and visually rich, not like a blank template or a generic icon.",

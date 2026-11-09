@@ -6,25 +6,13 @@ import { AdBanner } from "@/components/AdBanner";
 import { getAdSlot } from "@/lib/ads";
 
 const DEFAULT_PROMPT = "Generate a sleek black bell vector icon with white background.";
-const MAX_GENERATED_LINES = 1000;
-
-function limitGeneratedLines(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) return "";
-
-  const lines = trimmed.split(/\r?\n/);
-  if (lines.length <= MAX_GENERATED_LINES) return trimmed;
-
-  return lines.slice(0, MAX_GENERATED_LINES).join("\n");
-}
 
 function sanitizeSvg(svg: string) {
   const cleaned = svg.trim();
   if (!cleaned) return "";
   const withoutFence = cleaned.replace(/```svg/gi, "").replace(/```/g, "").trim();
   const match = withoutFence.match(/<svg[\s\S]*?<\/svg>/i);
-  const parsed = match ? match[0] : withoutFence;
-  return limitGeneratedLines(parsed);
+  return match ? match[0].trim() : withoutFence.trim();
 }
 
 export default function SvgGeneratorPage() {
@@ -83,8 +71,8 @@ export default function SvgGeneratorPage() {
 
   const downloadPng = () => {
     if (!previewSvg) return;
-    const svgBlob = new Blob([previewSvg], { type: "image/svg+xml;charset=utf-8" });
-    const url = URL.createObjectURL(svgBlob);
+
+    const svgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(previewSvg)}`;
     const image = new Image();
 
     image.onload = () => {
@@ -93,6 +81,7 @@ export default function SvgGeneratorPage() {
       const height = image.naturalHeight || 800;
       canvas.width = width;
       canvas.height = height;
+
       const context = canvas.getContext("2d");
       if (!context) return;
 
@@ -108,11 +97,13 @@ export default function SvgGeneratorPage() {
         anchor.click();
         URL.revokeObjectURL(pngUrl);
       }, "image/png");
-
-      URL.revokeObjectURL(url);
     };
 
-    image.src = url;
+    image.onerror = () => {
+      setError("PNG export failed. Please try exporting the SVG instead.");
+    };
+
+    image.src = svgDataUri;
   };
 
   return (
@@ -130,7 +121,7 @@ export default function SvgGeneratorPage() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-amber-200">Prompt-to-vector</p>
-              <h1 className="text-3xl font-semibold tracking-tight text-white">SVG Generator</h1>
+              <h1 className="text-3xl font-semibold tracking-tight text-white">SVG Playground & AI SVG Generator</h1>
             </div>
           </div>
 

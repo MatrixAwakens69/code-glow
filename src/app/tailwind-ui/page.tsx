@@ -6,22 +6,10 @@ import { AdBanner } from "@/components/AdBanner";
 import { getAdSlot } from "@/lib/ads";
 
 const SAMPLE_PROMPT = "Create a premium SaaS launch card with a glowing violet button and soft glassmorphism background";
-const MAX_GENERATED_LINES = 1000;
-
-function limitGeneratedLines(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) return "";
-
-  const lines = trimmed.split(/\r?\n/);
-  if (lines.length <= MAX_GENERATED_LINES) return trimmed;
-
-  return lines.slice(0, MAX_GENERATED_LINES).join("\n");
-}
 
 function normalizeHtml(markup: string) {
   const cleaned = markup.trim().replace(/```html/gi, "").replace(/```/g, "").trim();
-  if (!cleaned) return "";
-  return limitGeneratedLines(cleaned);
+  return cleaned;
 }
 
 function renderCompactPreview(markup: string) {
@@ -126,7 +114,7 @@ export default function TailwindUiPage() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-violet-100/80">Design lab</p>
-              <h1 className="text-3xl font-semibold tracking-tight text-white">Tailwind UI Playground</h1>
+              <h1 className="text-3xl font-semibold tracking-tight text-white">CSS Playground & AI Tailwind Generator</h1>
             </div>
           </div>
 
